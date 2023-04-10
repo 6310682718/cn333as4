@@ -113,6 +113,7 @@ fun FormImageScreen(modifier: Modifier = Modifier) {
             var height by remember { mutableStateOf(8) };
             var heightres by remember { mutableStateOf(8) };
             var warning by remember { mutableStateOf("") };
+            var category by remember { mutableStateOf("") }
         Spacer(Modifier.height(30.dp))
             Text(text = "Random Image", style = TextStyle(
                 fontSize = 30.sp,
@@ -190,7 +191,7 @@ fun FormImageScreen(modifier: Modifier = Modifier) {
         Spacer(Modifier.height(20.dp))
         AsyncImage(
             model = ImageRequest.Builder(LocalContext.current)
-                .data("https://loremflickr.com/${width}/${height}/${selectedItem}")
+                .data("https://loremflickr.com/${width}/${height}/${category}")
                 .crossfade(true)
                 .build(),
 //            model = "https://api.lorem.space/image/movie?w=150&h=220",
@@ -206,7 +207,7 @@ fun FormImageScreen(modifier: Modifier = Modifier) {
             onClick = {
                 height = heightres
                 width = widthres
-
+                category = selectedItem
                 //val painter = rememberAsyncImagePainter("https://loremflickr.com/${width}/${height}/${selectedItem}")
             }) {
             Text(text = "Generate", fontSize = 18.sp)
